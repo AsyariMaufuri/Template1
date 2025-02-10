@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="~{layout :: head}">
+</head>
+<body>
+<header th:replace="~{layout :: header}">
+</header>
+<link rel="stylesheet" th:href="@{/css/template1.css}" />
+<script th:src="@{/js/template1.js}" defer></script>
+<div class="container">
+    <aside class="sidebar" th:replace="~{layout :: nav}">
+    </aside>
+    <main>
+        <div class="table-container">
+            <h3>
+                <a th:href="@{\template1}"> Template 1   </a>
+            </h3>
+            <a class="black-button create-button" th:href="@{\template1\form}">
+                Tambah
+                <i class="fas fa-plus" aria-hidden="true"></i>
+            </a>
+            <form method="get" class="filter" th:action="@{/template1}">
+                <!-- Filter 1 -->
+                <div class="filter1">
+                    <button class="black-button add-button">Add Filter</button>
+                    <button class="black-button delete-button">Delete Filter</button>
+                    <select name="filter1" id="filter1">
+                        <option th:value="null">No Specific Seller</option>
+                        <option th:each="filter : ${filterItem}" th:value="${filter.value}" th:text="${filter.text}"></option>
+                    </select>
+                    <div class="search-container-filter">
+                        <input type="text" id="search1" name="search1" class="searchDataLeads" th:attr="value=${search1}">
+                        <!-- Radio buttons for Status -->
+                        <div id="status-container1" class="status-container" style="display:none;">
+                            <div class="input-box">
+                                <input th:field="${search1}" type="radio" name="status1" id="status-aktif1" value="1" required>
+                                <label for="status-aktif1">Aktif</label>
+                                <input th:field="${search1}" type="radio" name="status1" id="status-tidak-aktif1" value="0" required>
+                                <label for="status-tidak-aktif1">Tidak Aktif</label>
+                                <div class="field-validation-error" id="error-status1"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Filter 2 -->
+                <div class="filter2" style="display:none;">
+                    <button class="black-button add-button">Add Filter</button>
+                    <button class="black-button delete-button">Delete Filter</button>
+                    <select name="filter2" id="filter2">
+                        <option th:value="null">No Specific Seller</option>
+                        <option th:each="filter : ${filterItem}" th:value="${filter.value}" th:text="${filter.text}"></option>
+                    </select>
+                    <div class="search-container-filter">
+                        <input type="text" id="search2" name="search2" class="searchDataLeads" th:attr="value=${search2}">
+                        <div id="status-container2" class="status-container" style="display:none;">
+                            <div class="input-box">
+                                <input th:field="${search2}" type="radio" name="status2" id="status-aktif2" value="1" required>
+                                <label for="status-aktif2">Aktif</label>
+                                <input th:field="${search2}" type="radio" name="status2" id="status-tidak-aktif2" value="0" required>
+                                <label for="status-tidak-aktif2">Tidak Aktif</label>
+                                <div class="field-validation-error" id="error-status2"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Filter 3 -->
+                <div class="filter3" style="display:none;">
+                    <button class="black-button add-button">Add Filter</button>
+                    <button class="black-button delete-button">Delete Filter</button>
+                    <select name="filter3" id="filter3">
+                        <option th:value="null">No Specific Seller</option>
+                        <option th:each="filter : ${filterItem}" th:value="${filter.value}" th:text="${filter.text}"></option>
+                    </select>
+                    <div class="search-container-filter">
+                        <input type="text" id="search3" name="search3" class="searchDataLeads" th:attr="value=${search3}">
+                        <div id="status-container3" class="status-container" style="display:none;">
+                            <div class="input-box">
+                                <input th:field="${search3}" type="radio" name="status3" id="status-aktif3" value="1" required>
+                                <label for="status-aktif3">Aktif</label>
+                                <input th:field="${search3}" type="radio" name="status3" id="status-tidak-aktif3" value="0" required>
+                                <label for="status-tidak-aktif3">Tidak Aktif</label>
+                                <div class="field-validation-error" id="error-status3"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <button class="filter-button" type="submit">
+                    Search
+                    <i class="fa fa-search" aria-hidden="true"></i>
+                </button>
+            </form>
+            <table>
+                <thead>
+                <tr>
+                    <th></th>
+                    <th>Kode</th>
+                    <th>Nama</th>
+                    <th>Status</th>
+                </tr>
+                </thead>
+                <tbody>
+                    <tr th:if="${#lists.size(grid)} == 0">
+                        <td>Data Tidak Ditemukan</td>
+                    </tr>
+                    <tr th:each="template1:${grid}" th:object="${template1}">
+                        <td class="action">
+                            <a class="action-button detail-button" th:href="@{\template1\detail(kode=*{kode})}">
+                                <i class="fa fa-info-circle" aria-hidden="true"></i> Lihat
+                            </a>
+                        </td>
+                        <td th:text="*{kode}"></td>
+                        <td th:text="*{nama}"></td>
+                        <td> <p id="status-aplikasi" name="tipe-aplikasi" type="text" required th:field="*{status}">
+                            <span th:if="*{status}">Aktif</span>
+                            <span th:if="*{not status}">Tidak Aktif</span>
+                        </p>
+                        </td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                <tr>
+                    <td colspan="6">
+                        <div class="pagination" th:if="${totalPages} != 0">
+                            <div>
+                                <a th:href="@{/template1(page=1, filter1=${filter1}, search1=${search1}, filter2=${filter2}, search2=${search2}, filter3=${filter3}, search3=${search3})}"
+                                   th:attr="onclick=${currentPage <= 1} ? 'event.preventDefault()' : ''">&laquo;</a>
+
+                                <a th:href="@{/template1(page=${currentPage - 1}, filter=${filter}, search=${search}, filter2=${filter2}, search2=${search2}, filter3=${filter3}, search3=${search3} )}"
+                                   th:attr="onclick=${currentPage <= 1} ? 'event.preventDefault()' : ''">&lt;</a>
+
+                                <span th:text="|Page ${currentPage} of ${totalPages}|"></span>
+
+                                <a th:href="@{/template1(page=${currentPage + 1}, filter=${filter}, search=${search}, filter2=${filter2}, search2=${search2}, filter3=${filter3}, search3=${search3})}"
+                                   th:attr="onclick=${currentPage >= totalPages} ? 'event.preventDefault()' : ''">&gt;</a>
+
+                                <a th:href="@{/template1(page=${totalPages}, filter=${filter}, search=${search}, filter2=${filter2}, search2=${search2}, filter3=${filter3}, search3=${search3})}"
+                                   th:attr="onclick=${currentPage >= totalPages} ? 'event.preventDefault()' : ''">&raquo;</a>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                </tfoot>
+            </table>
+        </div>
+    </main>
+</div>
+</body>
+</html>

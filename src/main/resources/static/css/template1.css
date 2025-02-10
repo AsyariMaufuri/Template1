@@ -1,0 +1,56 @@
+.filter {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 10px;
+    align-items: center;
+    flex-direction: column;
+    align-content: flex-start;
+}
+
+.filter div {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.filter select,
+.filter input {
+    padding: 5px;
+    font-size: 14px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+}
+
+.filter .search-container-filter {
+    display: flex;
+    align-items: center;
+}
+
+.filter .search-container-filter input {
+    padding: 5px;
+    font-size: 14px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+}
+
+.filter .search-container-filter .suggestions {
+    display: none; /* You can control this with JavaScript if needed */
+}
+
+.filter .filter1, .filter .filter2, .filter .filter3 {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.filter .filter1 select,
+.filter .filter2 select,
+.filter .filter3 select {
+    width: 150px; /* Adjust the width of the select boxes */
+}
+
+.filter button {
+    margin-top: 10px;
+    align-self: flex-start; /* Aligns the button to the left */
+}
