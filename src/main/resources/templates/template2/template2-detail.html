@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="~{layout :: head}">
+</head>
+<body>
+<header th:replace="~{layout :: header}">
+</header>
+<div class="container">
+    <aside class="sidebar" th:replace="~{layout :: nav}"></aside>
+    <main>
+        <div class="table-container">
+            <h3>
+                <a th:href="@{/template2}"> Template 2 </a> >
+                <a th:href="@{/template2/form}" th:text="${template2ById.kode != null} ? 'Ubah' : 'Tambah'"></a>
+            </h3>
+            <form method="post" class="upsert-form" th:action="@{/template2/form}">
+                <table>
+                    <tbody>
+                    <tr>
+                        <td><label class="label-nama">Template 1</label></td>
+                        <td>
+                            <p class="search-produk" th:text="${template2ById.kodeTamplate1}"></p>
+                            <div class="field-validation-error"></div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label class="label-nama">Kode *</label></td>
+                        <td>
+                            <p class="search-produk" th:text="${template2ById.kode}"></p>
+                            <div class="field-validation-error"></div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label class="label-nama">Nama *</label></td>
+                        <td>
+                            <p class="search-produk" th:text="${template2ById.nama}"></p>
+                            <div class="field-validation-error"></div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label class="label-nama">Tanggal *</label></td>
+                        <td>
+                            <p class="search-produk" th:text="${template2ById.tanggal}"></p>
+                            <div class="field-validation-error"></div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label class="label-nama">Harga *</label></td>
+                        <td>
+                            <p class="search-produk" th:text="${template2ById.harga}"></p>
+                            <div class="field-validation-error"></div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label class="label-nama">Diskon *</label></td>
+                        <td>
+                            <p class="search-produk" th:text="${template2ById.diskon}"></p>
+                            <div class="field-validation-error"></div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label class="label-nama">Status*</label></td>
+                        <td class="input-box">
+                            <p th:text="${template2ById.status ? 'Aktif' : 'Tidak Aktif'}"></p>
+                            <div  class="field-validation-error"></div>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+                <div>
+                    <a class="action-button detail-button" th:href="@{\template2\form(kode=${template2ById.kode})}">
+                         Ubah
+                    </a>
+                    <a class="action-button detail-button" th:href="@{\template2\delete(kode=${template2ById.kode})}">
+                         Hapus
+                    </a>
+                    <a class="action-button detail-button" th:href="@{\template2}">
+                         Kembali
+                    </a>
+                </div>
+
+            </form>
+        </div>
+    </main>
+</div>
+</body>
+</html>

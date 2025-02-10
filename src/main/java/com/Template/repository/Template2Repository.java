@@ -20,12 +20,13 @@ public interface Template2Repository extends JpaRepository<Template2, String> {
             (:kode IS NULL OR t2.kode = :kode)
             AND (:nama IS NULL OR t2.nama = :nama)
             AND (:status IS NULL OR t2.status = :status)
-            AND (:tanggal IS NULL OR t2.tanggal BETWEEN :tanggalAwal AND :tanggalAkhir)
+            AND (:tanggalAwal IS NULL OR:tanggalAkhir IS NULL OR t2.tanggal BETWEEN :tanggalAwal AND :tanggalAkhir)
             AND (:harga IS NULL OR t2.harga = :harga)
             AND (:diskon IS NULL OR t2.diskon = :diskon)
+            AND (:kodeTemplate1 IS NULL OR t2.kodeTemplate1 = :kodeTemplate1)
             AND t2.deleteDate IS NULL
         """)
-    List<Template2> getAllBySearch(Pageable pagination, String kode, String nama, LocalDate tanggalAwal, LocalDate tanggalAkhir, BigDecimal harga, Integer diskon, Boolean status);
+    List<Template2> getAllBySearch(Pageable pagination, String kode, String nama, LocalDate tanggalAwal, LocalDate tanggalAkhir, BigDecimal harga, Integer diskon, Boolean status,String  kodeTemplate1);
 
     @Query("""
         SELECT COUNT(t2)
@@ -34,12 +35,13 @@ public interface Template2Repository extends JpaRepository<Template2, String> {
             (:kode IS NULL OR t2.kode = :kode)
             AND (:nama IS NULL OR t2.nama = :nama)
             AND (:status IS NULL OR t2.status = :status)
-            AND (:tanggal IS NULL OR t2.tanggal BETWEEN :tanggalAwal AND :tanggalAkhir)
+            AND (:tanggalAwal IS NULL OR:tanggalAkhir IS NULL OR t2.tanggal BETWEEN :tanggalAwal AND :tanggalAkhir)
             AND (:harga IS NULL OR t2.harga = :harga)
             AND (:diskon IS NULL OR t2.diskon = :diskon)
+            AND (:kodeTemplate1 IS NULL OR t2.kodeTemplate1 = :kodeTemplate1)
             AND t2.deleteDate IS NULL
         """)
-    Integer countAllBySearch(String kode, String nama, LocalDate tanggalAwal, LocalDate tanggalAkhir, BigDecimal harga, Integer diskon, Boolean status);
+    Integer countAllBySearch(String kode, String nama, LocalDate tanggalAwal, LocalDate tanggalAkhir, BigDecimal harga, Integer diskon, Boolean status, String kodeTemplate1);
 
 
     @Query("""

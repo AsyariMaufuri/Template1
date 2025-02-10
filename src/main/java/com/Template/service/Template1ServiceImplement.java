@@ -18,7 +18,7 @@ import java.util.List;
 public class Template1ServiceImplement implements Template1Service{
     private final Template1Repository template1Repository;
     private final Template2Repository template2Repository;
-    private final Integer rowInPage = 5;
+    private final Integer rowInPage = 1;
 
     public Template1ServiceImplement(Template1Repository template1Repository, Template2Repository template2Repository) {
         this.template1Repository = template1Repository;
@@ -173,7 +173,7 @@ public class Template1ServiceImplement implements Template1Service{
     }
 
     @Override
-    public Template1FormDto getTipeAplikasiById(String kode) {
+    public Template1FormDto getTemplate1ById(String kode) {
         Template1FormDto dto = new Template1FormDto();
         Template1 template1 = template1Repository.getTemplate1ById(kode);
         if(template1 != null){

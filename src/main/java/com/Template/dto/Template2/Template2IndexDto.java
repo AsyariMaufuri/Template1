@@ -16,4 +16,6 @@ public class Template2IndexDto {
 
     private Boolean status;
 
+    private String kodeTemplate1;
+
 }
